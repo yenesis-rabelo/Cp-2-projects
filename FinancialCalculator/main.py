@@ -1,3 +1,5 @@
+#Yenesis Rabelo Financial Calculator Assignment 
+
 def calculate_savings_time(goal_amount, deposit, deposit_frequency):
     if deposit_frequency == 'weekly':
         time_to_save = goal_amount / deposit  # Weeks required

@@ -1,109 +1,94 @@
-#define an empty list to store the books
-library = []
+#Yenesis Rabelo Personal Library Assignment
 
-#function to add a new book to the library
-def add_book():
+# Function to display the menu
+def display_menu():
+    """Display the menu options to the user."""
+    print("\nLibrary Management System")
+    print("1. Add a new book")
+    print("2. Display all books")
+    print("3. Search for a book by title")
+    print("4. Remove a book")
+    print("5. Exit")
 
-    #ask the user for book details
+# Function to add a new book to the library
+def add_book(library):
+    """Add a new book to the library catalog."""
     title = input("Enter the book title: ")
-    author = input("Enter the author's name: ")
-    
-    #create a dictionary representing the book
-    new_book = {"title": title, "author": author}
-    
-    #add the new book to the library list
-    library.append(new_book)
-    print(f"'{title}' by {author} has been added to your library.")
+    author = input("Enter the book author: ")
+    # Create a dictionary for the book and add it to the library list
+    book = {"title": title, "author": author}
+    library.append(book)
+    print(f'Book "{title}" added successfully!')
 
-#function to search for a book by title or author
-def search_books():
+# Function to display all books in the library
+def display_books(library):
+    """Display all books in the library."""
+    if not library:
+        print("The library is empty.")
+    else:
+        print("\nBooks in the library:")
+        for index, book in enumerate(library, start=1):
+            print(f"{index}. Title: {book['title']}, Author: {book['author']}")
 
-    #ask the user for a search term (title or author)
-    search_term = input("Enter the title or author to search for: ").lower()
+# Function to search for a book by title
+def search_book(library):
+    """Search for a book by title in the library."""
+    title = input("Enter the title of the book to search for: ")
+    found_books = [book for book in library if title.lower() in book["title"].lower()]
     
-    #initialize a list to store search results
-    results = []
-    
-    #loop through all books in the library
-    for book in library:
-
-        #if the search term matches either the title or the author (which is case insensitive)
-        if search_term in book["title"].lower() or search_term in book["author"].lower():
-
-            results.append(book)  #add the matching book to results
-    
-    #check if any books were found
-    if results:
-        print("Found the following books:")
-        for book in results:
+    if found_books:
+        print("\nBooks found:")
+        for book in found_books:
             print(f"Title: {book['title']}, Author: {book['author']}")
     else:
-        print("No books found matching your search.")
+        print("No books found with that title.")
 
-#function to remove a book from the library by title
-def remove_book():
-
-    #ask the user for the title of the book to remove
-    title = input("Enter the title of the book you want to remove: ")
+# Function to remove a book from the library
+def remove_book(library):
+    """Remove a book from the library by its title."""
+    title = input("Enter the title of the book to remove: ")
+    book_to_remove = None
     
-    #loop through the books in the library
+    # Search for the book in the library
     for book in library:
-
-        if book["title"].lower() == title.lower():  #match the title (which is case insensitive)
-
-            library.remove(book)  #remove the book from the list
-
-            print(f"'{title}' has been removed from your library.")
-            return  #exit the function after removing the book
+        if book["title"].lower() == title.lower():
+            book_to_remove = book
+            break
     
-    #if no matching book is found
-    print(f"'{title}' not found in your library.")
-
-#function to display all books in the library
-def display_books():
-
-    #check if the library is empty
-    if library:
-        print("\nYour library contains the following books:")
-        for book in library:
-            print(f"Title: {book['title']}, Author: {book['author']}")
+    if book_to_remove:
+        library.remove(book_to_remove)
+        print(f'Book "{title}" has been removed from the library.')
     else:
-        print("Your library is empty.")
+        print("Book not found. Cannot remove.")
 
-#function that runs the main program and displays the menu options
-def run_program():
+# Function to run the program and handle user input
+def run_library_system():
+    """Run the library management system."""
+    # List to store all books in the library
+    library = []
+    
+    # Infinite loop to keep showing the menu until the user chooses to exit
     while True:
-
-        #display the menu of options
-        print("\nLibrary Catalog Menu:")
-        print("1. Add a new book")
-        print("2. Search for a book")
-        print("3. Remove a book")
-        print("4. Display all books")
-        print("5. Exit")
+        # Display the menu options
+        display_menu()
         
-        #get the user's choice
-        choice = input("Please choose an option (1-5): ")
+        # Get the user's choice
+        choice = input("Enter the number of your choice: ")
         
-        #call the appropriate function based on user's choice
+        # Execute the corresponding action based on the user's choice
         if choice == '1':
-
-            add_book()  #add a new book to the library
+            add_book(library)  # Add a new book
         elif choice == '2':
-
-            search_books()  #search for books by title or author
+            display_books(library)  # Display all books
         elif choice == '3':
-
-            remove_book()  #remove a book from the library
+            search_book(library)  # Search for a book
         elif choice == '4':
-
-            display_books()  #display all books in the library
+            remove_book(library)  # Remove a book
         elif choice == '5':
-
-            print("Exiting the program. Goodbye!")  #exit the program
-            break  #break the loop to exit the program
+            print("Exiting the program. Goodbye!")
+            break  # Exit the program
         else:
+            print("Invalid choice. Please try again.")
 
-            print("Invalid choice. Please select a valid option.")  #invalid choice handler
-
-#run the program
+# Run the library management system
+run_library_system()
