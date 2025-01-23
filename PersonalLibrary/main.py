@@ -1,5 +1,3 @@
-#Yenesis Rabelo Personal Library Assignment
-
 # Function to display the menu
 def display_menu():
     """Display the menu options to the user."""
@@ -92,3 +90,4 @@ def run_library_system():
 
 # Run the library management system
 run_library_system()
+
