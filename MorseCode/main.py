@@ -5,11 +5,14 @@ english_alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 
 morse_code = ['.-', '-...', '-.-.', '-..', '.', '..-.', '--.', '....', '..', '.---', '-.-', '.-..', '--', '-.', '---', '.--.', '--.-', '.-.', '...', '-', '..-', '...-', '.--', '-..-', '-.--', '--..', '-----', '.----', '..---', '...--', '....-', '.....', '-....', '--...', '---..', '----.']
 
 
+
 # Function to translate English text to Morse code
 def english_to_morse(english_text):
     # Convert input text to uppercase and split into individual characters
     english_text = english_text.upper()
     morse_text = []
+
+
     
     # Loop through each character in the English text
     for char in english_text:
@@ -24,9 +27,12 @@ def english_to_morse(english_text):
             # Handle any non-alphabetic characters
             print(f"Error: '{char}' not valid in Morse code.")
             return None
+
+
     
     # Join the Morse code symbols with a space separator and return the result
     return ' '.join(morse_text)
+
 
 
 # Function to translate Morse code to English text
@@ -34,6 +40,8 @@ def morse_to_english(morse_text):
     # Split the Morse code into individual symbols
     morse_symbols = morse_text.split(' ')
     english_text = []
+
+
     
     # Loop through each Morse symbol
     for symbol in morse_symbols:
@@ -48,9 +56,12 @@ def morse_to_english(morse_text):
             # Handle any invalid Morse code symbols
             print(f"Error: '{symbol}' not valid in Morse code.")
             return None
+
+    
     
     # Join the English characters to form the text
     return ''.join(english_text)
+
 
 
 # Main function to interact with the user
@@ -61,6 +72,8 @@ def main():
         print("1. Translate English to Morse Code")
         print("2. Translate Morse Code to English")
         print("3. Exit")
+
+        
         
         # Get the user's choice
         choice = input("Enter your choice (1/2/3): ")
@@ -87,6 +100,7 @@ def main():
         else:
             # Handle invalid choice
             print("Invalid choice. Please select 1, 2, or 3.")
+
 
 
 # Run the program
