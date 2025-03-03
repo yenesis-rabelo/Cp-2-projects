@@ -1,5 +1,4 @@
-TODO_FILE = "todo.txt"
-
+TODO_FILE = "todolist/todo_list.txt"
 def load_tasks():
     """Load tasks from the to-do file."""
     try:
