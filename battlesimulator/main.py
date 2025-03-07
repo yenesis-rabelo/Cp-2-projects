@@ -118,7 +118,7 @@ def battle_system():
 def main_menu():
     characters = load_characters()
     while True:
-        print("\nRPG Character Manager")
+        print("\nBattle Simulator")
         print("1. Create Character")
         print("2. View Characters")
         print("3. Battle")
