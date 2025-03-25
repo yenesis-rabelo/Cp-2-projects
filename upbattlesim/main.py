@@ -7,6 +7,7 @@ from analysis import analyze_stats
 def display_characters(df):
     """Print all character stats."""
     print(df)
+
 def main_menu():
     characters = load_characters()
     
@@ -23,8 +24,8 @@ def main_menu():
 
         if choice == "1":
             new_char = create_character()
-            characters.loc[len(characters)] = new_char
-            save_characters(characters.values.tolist())
+            characters = characters.append(pd.Series(new_char, index=characters.columns), ignore_index=True)
+            save_characters(characters)
             print(f"\nCharacter {new_char[0]} created!\nBackstory: {new_char[7]}\n")
         
         elif choice == "2":
@@ -39,8 +40,8 @@ def main_menu():
             char2_name = input("Enter second character's name: ")
 
             try:
-                char1 = characters[characters["Name"] == char1_name].values.tolist()[0]
-                char2 = characters[characters["Name"] == char2_name].values.tolist()[0]
+                char1 = characters.loc[characters["Name"] == char1_name].iloc[0].tolist()
+                char2 = characters.loc[characters["Name"] == char2_name].iloc[0].tolist()
             except IndexError:
                 print("One or both characters not found.")
                 continue
@@ -58,7 +59,7 @@ def main_menu():
         elif choice == "6":
             name = input("Enter character's name to delete: ")
             characters = delete_character(characters, name)
-            save_characters(characters.values.tolist())
+            save_characters(characters)
         
         elif choice == "7":
             print("Exiting program.")
@@ -69,4 +70,3 @@ def main_menu():
 
 if __name__ == "__main__":
     main_menu()
-
