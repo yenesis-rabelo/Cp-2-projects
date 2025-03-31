@@ -1,4 +1,4 @@
-import pandas as pd
+
 from character import create_character, save_characters, load_characters, delete_character
 from battle import battle
 from visualization import visualize_character

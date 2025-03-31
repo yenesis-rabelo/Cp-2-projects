@@ -37,7 +37,7 @@ backstories = [
     f"After losing their friends to a ruthless warlord, they trained as a soldier, determined to avenge them.",  
       
     f"{fake.first_name()} was born in {fake.city()}, where they learned to fight to survive. "  
-    f"Their father was a blacksmith who forged weapons for the city’s guards, and after witnessing their father's unjust execution by corrupt officials, they vowed to change the system."  
+    f"Their father was a blacksmith who forged weapons for the citys guards, and after witnessing their father's unjust execution by corrupt officials, they vowed to change the system."  
 ]  
   
 used_backstories = []  # Keep track of used backstories  
