@@ -1,8 +1,6 @@
-
 import csv
 import os
 
-# Function to load coin denominations from CSV
 def load_coin_denominations():
     """Loads available countries and their coin denominations."""
     countries = {}
@@ -12,17 +10,22 @@ def load_coin_denominations():
             for row in reader:
                 country = row[0].strip()
                 coins = [coin.split("-") for coin in row[1:]]
-                countries[country.lower()] = [(name, int(value)) for name, value in coins]
+                countries[country.lower()] = [(name, float(value)) for name, value in coins]
     except FileNotFoundError:
         print("Error: Coin denomination file not found.")
     return countries
 
 def coin_change(target, coins):
-    """Solves the Coin Change Problem using a dynamic approach."""
+    """Solves the Coin Change Problem allowing decimal values."""
     if target <= 0:
         return "Invalid target amount. Please enter a positive value."
     
-    coins.sort(key=lambda x: x[1], reverse=True)  # Sort by highest value first
+    smallest_denomination = min(coin[1] for coin in coins)
+    scale = int(1 / smallest_denomination)
+    target = int(round(target * scale))
+    coins = [(name, int(value * scale)) for name, value in coins]
+    
+    coins.sort(key=lambda x: x[1], reverse=True)
     dp = [float('inf')] * (target + 1)
     dp[0] = 0
     coin_used = [-1] * (target + 1)
@@ -36,7 +39,6 @@ def coin_change(target, coins):
     if dp[target] == float('inf'):
         return "No solution possible with the given denominations."
     
-    # Backtrack to find the coins used
     result = []
     amount = target
     while amount > 0:
@@ -68,7 +70,7 @@ def main():
         
         while True:
             try:
-                target = int(input("Enter the target amount (or -1 to choose another country): ").strip())
+                target = float(input("Enter the target amount (or -1 to choose another country): ").strip())
                 if target == -1:
                     break
                 
