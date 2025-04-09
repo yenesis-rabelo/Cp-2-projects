@@ -3,8 +3,12 @@ from solver import coin_change
 from display import show_available_countries, show_coin_result
 
 def main():
-    # Main function to handle user interaction
     countries = load_coin_denominations()
+    
+
+    if not countries:
+        print("No country data loaded. Exiting.")
+        return
 
     while True:
         show_available_countries(countries)
@@ -29,6 +33,9 @@ def main():
             except ValueError:
                 print("Invalid input. Please enter a valid numerical value.")
 
+                countries = load_coin_denominations()
+
+
+
 if __name__ == "__main__":
     main()
-

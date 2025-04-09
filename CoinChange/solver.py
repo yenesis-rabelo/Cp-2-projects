@@ -1,5 +1,4 @@
 def coin_change(target, coins):
-    # Solves the Coin Change Problem allowing decimal values
     if target <= 0:
         return "Invalid target amount. Please enter a positive value."
 
@@ -31,4 +30,9 @@ def coin_change(target, coins):
                 amount -= value
                 break
 
+    # Remove duplicates from result list by converting it to a set and back to a list
+    result = list(set(result))
+
     return dp[target], result
+
+
