@@ -53,3 +53,9 @@ def battle_menu():
     if name1 == name2:
         print("Cannot battle the same character.")
         return
+
+
+    battle(characters[name1], characters[name2])
+
+
+
