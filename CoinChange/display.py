@@ -12,7 +12,8 @@ def show_coin_result(result):
     else:
         num_coins, coin_list = result
         print(f"Minimum number of coins needed: {num_coins}")
-        print("Coins used:", ", ".join([f"{coin}" for coin in coin_list]))
+        print("Coins used:", ", ".join(coin_list))
+
 
 
 
