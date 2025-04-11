@@ -2,19 +2,17 @@ def coin_change(target, coins):
     if target < 0:
         return "Invalid target amount. Please enter a positive value."
 
-    # Extract the cents portion (the part after the decimal)
-    target_cents = round((target - int(target)) * 100)
+    # Convert the full amount (dollars and cents) to cents
+    target_cents = round(target * 100)
 
-    # Scale coins to integer values in cents
+    # Convert coin values to cents
     coins = [(name, int(round(value * 100))) for name, value in coins]
-
     coins.sort(key=lambda x: x[1], reverse=True)
 
     dp = [float('inf')] * (target_cents + 1)
     dp[0] = 0
     coin_used = [-1] * (target_cents + 1)
 
-    # Dynamic programming to find minimum number of coins for the target cents
     for name, value in coins:
         for j in range(value, target_cents + 1):
             if dp[j - value] + 1 < dp[j]:
@@ -34,7 +32,8 @@ def coin_change(target, coins):
                 break
 
     result_list = [f"{coin}: {count}" for coin, count in result.items()]
-    return dp[target_cents], result_list  # Return total coins and formatted result
+    return dp[target_cents], result_list
+
 
 
 
